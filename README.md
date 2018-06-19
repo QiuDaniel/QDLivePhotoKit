@@ -11,9 +11,32 @@ pod 'QDLivePhotoKit', '~> 0.1.0'
 ```
 ## Usage
 
-### 
+### Get the file as AVURLAsset
 ```objective-c
+[[QDLivePhotoManager sharedManager] saveLivePhotoWithAsset:urlAsset completionHandler:^(BOOL success) {
+        
+    if (success) {
+        NSLog(@"success");
+        
+    } else {
+        NSLog(@"fail");
+    }
+}];
+```
+### Get the file path
 
+you must have the authority to access the file with path
+
+```objective-c
+[[QDLivePhotoManager sharedManager] saveLivePhotoWithPath:path completionHandler:^(BOOL success) {
+        
+    if (success) {
+        NSLog(@"success");
+        
+    } else {
+        NSLog(@"fail");
+    }
+}];
 ```
 
 ## License
