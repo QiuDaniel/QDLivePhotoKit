@@ -39,6 +39,10 @@ you must have the authority to access the file with path
 }];
 ```
 
+## Requirements
+
+iOS9.1 or later. Requires ARC
+
 ## License
 
 QDLivePhotoKit is released under the MIT license. See [LICENSE](https://github.com/QiuDaniel/QDLivePhotoKit/blob/master/LICENSE) for details.
