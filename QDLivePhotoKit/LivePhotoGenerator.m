@@ -26,8 +26,17 @@ static NSString *const kSpaceQuickTimeMetaData = @"mdta";
 - (instancetype)initWithPath:(NSString *)path {
     self = [super init];
     if (self) {
-        self.path = path;
-        self.dummyTimeRange = CMTimeRangeMake(CMTimeMake(0, 1000), CMTimeMake(200, 3000));
+        _path = path;
+        _dummyTimeRange = CMTimeRangeMake(CMTimeMake(0, 1000), CMTimeMake(200, 3000));
+    }
+    return self;
+}
+
+- (instancetype)initWithAsset:(AVURLAsset *)asset {
+    self = [super init];
+    if (self) {
+        _asset = asset;
+        _dummyTimeRange = CMTimeRangeMake(CMTimeMake(0, 1000), CMTimeMake(200, 3000));
     }
     return self;
 }

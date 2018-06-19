@@ -15,5 +15,5 @@ FOUNDATION_EXPORT double QDLivePhotoKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char QDLivePhotoKitVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <QDLivePhotoKit/PublicHeader.h>
-
+#import <QDLivePhotoKit/QDLivePhotoManager.h>
 

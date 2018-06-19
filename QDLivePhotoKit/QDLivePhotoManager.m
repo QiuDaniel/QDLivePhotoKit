@@ -11,15 +11,6 @@
 #import <Photos/Photos.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
-#define kNameTempFile       @"tmp.mov"
-#define kNameImageFile      @"generated_livephoto.jpg"
-#define kNameMovieFile      @"generated_livephoto.mov"
-
-#define kPathTempFile      [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:kNameTempFile]
-#define kPathImageFile     [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:kNameImageFile]
-#define kPathMovieFile     [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:kNameMovieFile]
-
-
 @interface QDLivePhotoManager ()
 
 @property (nonatomic, copy) NSString *genUUID;
@@ -37,11 +28,10 @@
     return _instance;
 }
 
-- (void)saveLivePhotoWithPath:(NSString *)path completionHandler:(void (^)(BOOL))completionHandler {
+- (void)saveLivePhotoWithAsset:(AVURLAsset *)asset completionHandler:(void (^)(BOOL))completionHandler {
     BOOL result = NO;
     do {
         {
-            AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:path] options:nil];
             result = [self generateStillImage:CMTimeGetSeconds(kCMTimeZero) urlAsset:asset];
             if (!result) {
                 !completionHandler?:completionHandler(NO);
@@ -51,7 +41,7 @@
         
         {
             [self removeFile:kPathMovieFile];
-            LivePhotoGenerator *generator = [[LivePhotoGenerator alloc] initWithPath:path];
+            LivePhotoGenerator *generator = [[LivePhotoGenerator alloc] initWithAsset:asset];
             [generator writeMovWithPath:kPathMovieFile assetIdentifier:self.genUUID];
             
             result = [[NSFileManager defaultManager] fileExistsAtPath:kPathMovieFile];
@@ -73,6 +63,15 @@
                 !completionHandler?:completionHandler(success);
             });
         }];
+    }
+}
+
+- (void)saveLivePhotoWithPath:(NSString *)path completionHandler:(void (^)(BOOL))completionHandler {
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:path] options:nil];
+    if (asset) {
+        [self saveLivePhotoWithAsset:asset completionHandler:completionHandler];
+    } else {
+        !completionHandler?:completionHandler(NO);
     }
 }
 

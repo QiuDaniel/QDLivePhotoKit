@@ -10,9 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class AVURLAsset;
+
 @interface LivePhotoGenerator : NSObject
 
 - (instancetype)initWithPath:(nonnull NSString *)path;
+- (instancetype)initWithAsset:(nonnull AVURLAsset *)asset;
 
 - (void)writeMovWithPath:(nonnull NSString *)destPath assetIdentifier:(nonnull NSString *)identifier;
 
