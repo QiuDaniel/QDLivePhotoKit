@@ -1,0 +1,23 @@
+PODS:
+  - QDLivePhotoKit (0.1.0)
+  - TZImagePickerController (2.1.6)
+
+DEPENDENCIES:
+  - QDLivePhotoKit (from `../`)
+  - TZImagePickerController
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - TZImagePickerController
+
+EXTERNAL SOURCES:
+  QDLivePhotoKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  QDLivePhotoKit: 3fbd0f70ddbfce296326e5b58ed11a4e149ac841
+  TZImagePickerController: bc25e933c9d970a622d052f0d4de16202bbcd863
+
+PODFILE CHECKSUM: 8a6d80098b9daef7f28e70b66dfb95086020ff41
+
+COCOAPODS: 1.5.3
